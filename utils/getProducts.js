@@ -18,16 +18,14 @@ export const getProducts = async ({ params, tagsParams, id, search, sort }) => {
   }
 
   if (params) {
-    const filteredProducts = products.filter(product => product.category === params)
+    const filteredProducts = products.filter(product => product.category === params || product.tags.includes(params))
 
-    if (tagsParams && tags.includes(tagsParams)) {
-      if (sort === 'lowest') {
-        return filteredProducts.sort((a, b) => a.price - b.price).filter(product => product.tags.includes(tagsParams))
-      }
-
+    if (tagsParams && tags.includes(tagsParams)) {   
       if (sort === 'highest') {
         return filteredProducts.sort((a, b) => b.price - a.price).filter(product => product.tags.includes(tagsParams))
       }
+      
+      return filteredProducts.sort((a, b) => a.price - b.price).filter(product => product.tags.includes(tagsParams))
     }
 
     if (sort === 'highest') {

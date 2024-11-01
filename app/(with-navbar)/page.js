@@ -2,20 +2,8 @@ import Hero from '@/app/(with-navbar)/components/Hero.js'
 import FilteredProducts from './components/FilteredProducts'
 import HowToBuyContainer from './components/HowToBuyContainer'
 import Link from 'next/link'
-import Products from './components/Products'
 
-const Home = ({ searchParams }) => {
-  const { search } = searchParams
-
-  if (search) {
-    return (
-      <div className='flex flex-col items-center max-w-7xl mx-auto mt-24 gap-4 py-4'>
-        <h2 className='font-bold text-4xl text-center'>Resultados de búsqueda:</h2>
-        <Products search={search} />
-      </div>
-    )
-  }
-
+const Home = () => {
   return (
     <>
       <Hero />

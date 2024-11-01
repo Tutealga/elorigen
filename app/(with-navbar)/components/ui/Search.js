@@ -1,17 +1,8 @@
-'use client'
-
-import useHandleFilter from '@/hooks/HandleFilter'
-
 const Search = () => {
-  const { handleFilter } = useHandleFilter()
-
-  const handleSearch = (formData) => {
-    handleFilter(formData, '/search')
-  }
 
   return (
-    <form className='flex' onSubmit={handleSearch}>
-      <input className='rounded-l-full px-2' type='search' placeholder='Buscar' name='search' />
+    <form className='flex'>
+      <input className='rounded-l-full px-2' placeholder='Buscar' />
       <div className='px-2 py-1 border rounded-r-full flex items-center justify-center'>
         <button type='submit'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='14' height='14'>

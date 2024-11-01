@@ -1,7 +1,8 @@
 export const ENVIO = 1200
 
-export const categories = ['preparados', 'cortes-vacunos', 'cortes-cerdo', 'embutidos-y-achuras', 'cortes-pollo', 'almacen']
+export const categories = {'preparados':'preparados', 'cortes-vacunos':'vacuno', 'cortes-cerdo':'cerdo', 'embutidos-y-achuras':'embutidos y achuras', 'cortes-pollo':'pollo', 'almacen':'almacen'}
 export const tags = ['parrilla', 'horno', 'plancha', 'cacerola', 'churrasco', 'milanesa', 'más-baratos', 'más-vendidos']
+export const categoriesTags = {"carnes-para-parrilla":'parrilla', "carnes-para-horno":'horno', "carnes-para-plancha":'plancha', "carnes-para-cacerola":'cacerola', "carnes-para-churrascos":'churrasco', "carnes-para-milanesas":'milanesa'}
 
 const date = new Date()
 const year = date.getFullYear()
