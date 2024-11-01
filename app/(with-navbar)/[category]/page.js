@@ -15,7 +15,7 @@ const ProductCategory = async ({ params, searchParams }) => {
           categories.includes(category)
             ? <>
               <h1 className='font-bold text-4xl text-center'>{data.title}</h1>
-              {data.filters ? <Filters filters={data.filters} tags={tags} /> : null}
+              {data.filters ? <Filters filters={data.filters} /> : null}
               <Products params={category} tagsParams={tags} search={q} sort={s} />
               </>
             : <NotFound />
