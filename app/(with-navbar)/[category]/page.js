@@ -18,7 +18,6 @@ const findCategory = (category) => {
    } else {
     return categories[category]
    }
-
 }
 
 return (

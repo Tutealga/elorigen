@@ -1,8 +1,21 @@
+'use client'
+
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+
 const Search = () => {
+  const router = useRouter()
+  const [query, setQuery] = useState('')
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    router.push(`/search?q=${query}`)
+    setQuery('')
+  }
 
   return (
-    <form className='flex'>
-      <input className='rounded-l-full px-2' placeholder='Buscar' />
+    <form className='flex' onSubmit={handleSearch}>
+      <input className='rounded-l-full px-2' value={query} placeholder='Buscar' name='search' type="text" onChange={(e) => setQuery(e.target.value)}/>
       <div className='px-2 py-1 border rounded-r-full flex items-center justify-center'>
         <button type='submit'>
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='14' height='14'>
