@@ -29,22 +29,53 @@ const Item = ({ product }) => {
   }
 
   return (
-    <article className={`${product.discount === 1 ? 'border border-red-600' : ''} flex flex-col items-center gap-2 lg:w-full bg-white rounded-lg w-[250px] place-self-center`}>
+    <article className={`${product.discount !== '0%' ? 'border border-red-600' : ''} flex flex-col items-center gap-2 lg:w-full bg-white rounded-lg w-[250px] place-self-center`}>
       <Link className='flex-col flex items-center' href={`/${product.category}/${product.id}`}>
         <div className='flex items-center relative'>
           <Image className='rounded-t-lg' src={product.img} height={162} width={243} alt={product.name} />
-          <span className={`${product.discount === 1 ? 'absolute bg-red-600 top-0 left-0 p-1 text-xs text-white rounded-tl-lg' : 'hidden'}`}>Oferta</span>
+          <span className={`${product.discount !== '0%' ? 'absolute bg-red-600 top-0 left-0 p-1 text-xs text-white rounded-tl-lg' : 'hidden'}`}>{product.discount} OFF</span>
         </div>
         <h3 className='font-bold sm:text-lg md:text-xl text-center pt-4 text-base'>{product.name}</h3>
-        <div className="flex items-center justify-center relative w-full opacity-80">
-        <p className={`${(counter > 1 && product.pricetwo > 0) ? 'line-through' : ''} md:text-lg sm:text-base text-sm`}>
+        <div className="flex flex-col items-center justify-center relative w-full opacity-80">
+          {product.discount !== '0%' 
+          ?
+          <p className='md:text-lg sm:text-base text-sm line-through'>
+          {localePrice(product.pricediscount)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
+          </p>
+        :
+        null  
+        }
+        {
+          product.discount !== '0%'
+          ?
+          <>
+          {
+            counter === 1 
+            ?
+
+            <p className={`${(counter > 1 && product.pricetwo > 0) ? 'line-through' : ''} md:text-lg sm:text-base text-sm`}>
           {localePrice(product.price)}
           {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
           </p>
-          <p className={`${(counter === 1 || product.pricetwo === 0) ? 'hidden' : 'absolute'} md:text-lg sm:text-base text-sm text-red-600 font-bold top-0 right-0`}>
+          :
+          <p className={`${(counter === 1 || product.pricetwo === 0) ? 'opacity-0' : 'opacity-100'} md:text-lg sm:text-base text-sm text-red-600 font-bold`}>
+          {localePrice(product.pricetwo)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
+          </p>}
+          </>     
+          :
+          <>
+          <p className={`${(counter > 1 && product.pricetwo > 0) ? 'line-through' : ''} md:text-lg sm:text-base text-sm`}>
+          {localePrice(product.price)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
+          </p>
+          <p className={`${(counter === 1 || product.pricetwo === 0) ? 'opacity-0' : 'opacity-100'} md:text-lg sm:text-base text-sm text-red-600 font-bold`}>
           {localePrice(product.pricetwo)}
           {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
           </p>
+          </> 
+          }
         </div>
         <p className='opacity-80 md:text-sm text-xs'>{product.unidad}</p>
         <p className='opacity-80 md:text-sm text-xs'>Compra mínima: 1 un</p>

@@ -8,9 +8,9 @@ export const getProducts = async ({ params, tagsParams, id, search, sort }) => {
     .split('\n')
     .slice(1)
     .map((row) => {
-      const [id, name, price, discount, pricetwo, priceten, unidad, category, tags, img, prom] = row.split('\t')
+      const [id, name, price, discount, pricediscount, pricetwo, priceten, unidad, category, tags, img, prom] = row.split('\t')
 
-      return { id, name, price: Number(price), discount: Number(discount), pricetwo: Number(pricetwo), priceten: Number(priceten), unidad, category, tags: tags.split('|'), img, prom: parseFloat(prom.replace(',', '.')) }
+      return { id, name, price: Number(price), discount: discount, pricediscount: Number(pricediscount), pricetwo: Number(pricetwo), priceten: Number(priceten), unidad, category, tags: tags.split('|'), img, prom: parseFloat(prom.replace(',', '.')) }
     })
 
   if (search) {

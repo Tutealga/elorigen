@@ -25,7 +25,7 @@ export const useCreate = (initialData) => {
   'Hola! Me gustaría realizar el siguiente pedido: \n'
     .concat(order.items.reduce((message, item) => message.concat(`* ${item.title} - x${item.quantity} - ${(item.quantity > 1 && item.pricetwo > 0) ? `~${localePrice(item.price)}/kg~ ${localePrice(item.pricetwo)}` : localePrice(item.price)}/kg\n`), ''))
     .concat(`\nPara ${data.direction}, ${data.localidad}.`)
-    .concat(`\nEl ${data.deliveryDate} entre ${data.deliveryTime}`)
+    .concat(`\nEl ${data.deliveryDate}`)
     .concat(`\n\nNota adicional: ${data.nota}`)
 
   const checkout = () => {

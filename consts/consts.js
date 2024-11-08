@@ -18,5 +18,4 @@ export const initialBuyer = {
   cp: '',
   nota: '',
   deliveryDate: finalDate,
-  deliveryTime: '11:00 - 12:00'
 }

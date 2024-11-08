@@ -9,8 +9,6 @@ import { initialBuyer } from '@/consts/consts'
 import ItemCart from '../../carrito/components/ItemCart'
 import { localePrice } from '@/utils/LocalePrice'
 
-const options = ['Elige una franja horaria', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 13:00', '16:00 - 17:00', '17:00 - 18:00', '18:00 - 19:00']
-
 const Checkout = () => {
   const { cart, totalPrice } = useCartContext()
   const { data, inputsValue, handleSubmit } = useCreate(initialBuyer)
@@ -22,7 +20,7 @@ const Checkout = () => {
       cart.length !== 0
         ? <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 p-4'>
           <form className='flex flex-col gap-4 lg:col-span-8 w-full mx-auto' onSubmit={handleSubmit}>
-            <LabelInput label='Nombre y Apellido' name='name' required type='text' pattern='[A-Za-z\s]{1,}' placeholder='Ej: Juan Pérez' change={inputsValue} value={data.name} />
+            <LabelInput label='Nombre y Apellido' name='name' required type='text' pattern='[A-Za-z,\s\u00f1\u00d1\u00C0-\u017F]{1,}' placeholder='Ej: Juan Pérez' change={inputsValue} value={data.name} />
             <div className='flex flex-col'>
               <div className='flex gap-1'>
                 <label className='font-bold'>País</label>
@@ -32,8 +30,8 @@ const Checkout = () => {
                 <option>Argentina</option>
               </select>
             </div>
-            <LabelInput label='Direccion de entrega' required name='direction' type='text' pattern='[A-Za-z\s]+\s[0-9]{1,}' placeholder='Ej: Juan Jose Diaz 935, Depto 2 B' change={inputsValue} value={data.direction} />
-            <LabelInput label='Localidad / Ciudad' required placeholder='Ej: San Isidro' name='localidad' type='text' pattern='[A-Za-z\s]{1,}' change={inputsValue} value={data.localidad} />
+            <LabelInput label='Direccion de entrega' required name='direction' type='text' pattern='[0-9A-Za-z,.°\s\u00f1\u00d1\u00C0-\u017F]{1,}' placeholder='Ej: Juan Jose Diaz 935, Depto 2 B' change={inputsValue} value={data.direction} />
+            <LabelInput label='Localidad / Ciudad' required placeholder='Ej: San Isidro' name='localidad' type='text' pattern='[A-Za-z\s,.\u00f1\u00d1\u00C0-\u017F]{1,}' change={inputsValue} value={data.localidad} />
             <div className='flex flex-col'>
               <div className='flex gap-1'>
                 <label className='font-bold'>Provincia</label>
@@ -47,17 +45,8 @@ const Checkout = () => {
             <LabelInput label='Teléfono' name='phone' required type='tel' pattern='[1]{2}[0-9]{4}[0-9]{4}' placeholder='Ej: 1145689634' change={inputsValue} value={data.phone} />
             <LabelInput label='Dia de entrega' required name='deliveryDate' type='date' change={inputsValue} value={data.deliveryDate} />
             <div className='flex flex-col'>
-              <div className='flex gap-1'>
-                <label className='font-bold'>Franja horaria</label>
-                <span role='presentation' aria-hidden='true' class='text-[#FC8181] font-bold'>*</span>
-              </div>
-              <select required name='deliveryTime' className='rounded border p-2' onChange={inputsValue} value={data.deliveryTime}>
-                {options.map(option => <option key={option} value={option}>{option}</option>)}
-              </select>
-            </div>
-            <div className='flex flex-col'>
               <label>Notas del pedido (opcional)</label>
-              <textarea name='nota' row='10' className='rounded border p-2' placeholder='Notas sobre tu pedido, por ejemplo, notas especiales para la entrega.' onChange={inputsValue} value={data.nota} />
+              <textarea name='nota' row='10' className='rounded border p-2' placeholder='Notas sobre tu pedido, por ejemplo, especificaciones para la entrega.' onChange={inputsValue} value={data.nota} />
             </div>
             <button className='rounded-full bg-red-900 text-white p-4 mx-auto' type='submit'>
               Realizar pedido
