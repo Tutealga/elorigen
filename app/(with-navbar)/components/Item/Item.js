@@ -37,7 +37,8 @@ const Item = ({ product }) => {
         </div>
         <h3 className='font-bold sm:text-lg md:text-xl text-center pt-4 text-base'>{product.name}</h3>
         <div className="flex flex-col items-center justify-center relative w-full opacity-80">
-          {product.discount !== '0%' 
+          {
+          product.discount !== '0%' 
           ?
           <p className='md:text-lg sm:text-base text-sm line-through'>
           {localePrice(product.pricediscount)}

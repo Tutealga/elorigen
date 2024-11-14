@@ -24,22 +24,54 @@ const ItemCart = ({ product }) => {
           <span className='leading-tight'>
             {product.name}
           </span>
-          <p className='text-sm opacity-60 flex gap-1'>
-            <span className={`${(product.quantity > 1 && product.pricetwo > 0) ? 'line-through' : ''}`}>
-              {localePrice(product.price)}
-              {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
-            </span>
-            <span className={`${(product.quantity === 1 || product.pricetwo === 0) ? 'hidden' : 'block'} text-red-600 font-bold`}>
-              {localePrice(product.pricetwo)}
-              {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
-            </span>
+          <div className='text-sm opacity-60 flex gap-1'>
+          {
+          product.discount !== '0%' 
+          ?
+          <p className='line-through'>
+          {localePrice(product.pricediscount)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
           </p>
+        :
+        null  
+        }
+        {
+          product.discount !== '0%'
+          ?
+          <>
+          {
+            product.quantity === 1 
+            ?
+
+            <p className={`${(product.quantity > 1 && product.pricetwo > 0) ? 'line-through' : ''}`}>
+          {localePrice(product.price)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
+          </p>
+          :
+          <p className={`${(product.quantity === 1 || product.pricetwo === 0) ? 'opacity-0' : 'opacity-100'} text-red-600 font-bold`}>
+          {localePrice(product.pricetwo)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
+          </p>}
+          </>     
+          :
+          <>
+          <p className={`${(product.quantity > 1 && product.pricetwo > 0) ? 'line-through' : ''}`}>
+          {localePrice(product.price)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
+          </p>
+          <p className={`${(product.quantity === 1 || product.pricetwo === 0) ? 'opacity-0' : 'opacity-100'} text-red-600 font-bold`}>
+          {localePrice(product.pricetwo)}
+          {product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}
+          </p>
+          </> 
+          }
+          </div>
           <span className='text-xs opacity-60'>
             {product.unidad}
           </span>
         </div>
         <div className='flex h-16 flex-col justify-between'>
-          <p className='flex justify-end space-y-2 text-right text-sm'>{localePrice(((((product.quantity > 1 && product.pricetwo > 0) ? product.pricetwo : product.price) * product.prom) * product.quantity))}{product.category === 'almacen' ? <span>/un</span> : <span>/kg</span>}</p>
+          <p className='flex justify-end space-y-2 text-right text-sm'>{localePrice(((((product.quantity > 1 && product.pricetwo > 0) ? product.pricetwo : product.price) * product.prom) * product.quantity))}</p>
           <div className='ml-auto flex flex-row items-center rounded-full bg-[#f2f3f8]'>
             <button disabled={product.quantity <= 1} type='btn' className='text-black bg-[#f8f9fa] border-[#f8f9fa] hover:bg-[#d3d4d5] hover:border-[#c6c7c8] px-3 py-1 rounded-l-full' onClick={() => restProduct(product.id)}>-</button>
             <p className='text-center'>
