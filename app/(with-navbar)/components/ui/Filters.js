@@ -7,7 +7,7 @@ const Filters = ({ filters }) => {
   const { active, handleFilter } = useHandleFilter()
 
   return (
-    <div className='flex items-center w-full px-4 flex-col md:flex-row'>
+    <div className='flex items-center w-full px-4 flex-col md:flex-row gap-4'>
       <ul className='flex w-full gap-2 justify-start sm:justify-center overflow-x-scroll no-scrollbar'>
         {filters.map(link => (
           <button

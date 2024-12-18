@@ -1,7 +1,9 @@
 import Hero from '@/app/(with-navbar)/components/Hero.js'
 import FilteredProducts from './components/FilteredProducts'
-import HowToBuyContainer from './components/HowToBuyContainer'
+import HowToBuy from './components/HowToBuy'
 import Link from 'next/link'
+import Condiciones from './components/Condiciones'
+import Datos from './components/Datos'
 
 const Home = () => {
   return (
@@ -38,7 +40,9 @@ const Home = () => {
       </div>
       <FilteredProducts tagsParams='más-vendidos' />
       <FilteredProducts tagsParams='más-baratos' />
-      <HowToBuyContainer />
+      <Condiciones />
+      <HowToBuy />
+      <Datos />
     </>
   )
 }

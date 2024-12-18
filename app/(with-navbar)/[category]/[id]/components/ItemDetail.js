@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import ItemCount from '../../../components/Item/ItemCount'
 import { localePrice } from '@/utils/LocalePrice'
+import ItemCount from '@/app/(with-navbar)/components/Item/ItemCount'
 
 const ItemDetail = ({ item }) => {
   return (

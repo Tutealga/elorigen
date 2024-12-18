@@ -8,17 +8,31 @@ export const getProducts = async ({ params, tagsParams, id, search, sort }) => {
     .split('\n')
     .slice(1)
     .map((row) => {
-      const [id, name, price, discount, pricediscount, pricetwo, priceten, unidad, category, tags, img, prom] = row.split('\t')
+      const [id, name, price, discount, pricediscount, pricetwo, priceten, unidad, category, tags, img, prom, display] = row.split('\t')
 
-      return { id, name, price: Number(price), discount: discount, pricediscount: Number(pricediscount), pricetwo: Number(pricetwo), priceten: Number(priceten), unidad, category, tags: tags.split('|'), img, prom: parseFloat(prom.replace(',', '.')) }
+        return { 
+          id, 
+          name, 
+          price: Number(price), 
+          discount: discount, 
+          pricediscount: Number(pricediscount), 
+          pricetwo: Number(pricetwo), 
+          priceten: Number(priceten), 
+          unidad, 
+          category, 
+          tags: tags.split('|'), 
+          img, 
+          prom: parseFloat(prom.replace(',', '.')), 
+          display
+        }
     })
 
   if (search) {
-    return products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
+    return products.filter(product => product.display === 'TRUE' && product.name.toLowerCase().includes(search.toLowerCase()))
   }
 
   if (params) {
-    const filteredProducts = products.filter(product => product.category === params || product.tags.includes(params))
+    const filteredProducts = products.filter(product => product.display === 'TRUE' && (product.category === params || product.tags.includes(params)))
 
     if (tagsParams && tags.includes(tagsParams)) {   
       if (sort === 'highest') {
@@ -36,11 +50,11 @@ export const getProducts = async ({ params, tagsParams, id, search, sort }) => {
   }
 
   if (tagsParams && tags.includes(tagsParams)) {
-    return products.filter(product => product.tags.includes(tagsParams)).slice(0, 5)
+    return products.filter(product => product.display === 'TRUE' && product.tags.includes(tagsParams)).slice(0, 5)
   }
 
   if (id) {
-    return products.find(product => product.id === id)
+    return products.find(product => product.display === 'TRUE' && product.id === id)
   }
 
   return products.slice(0, 5)
