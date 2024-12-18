@@ -48,6 +48,21 @@ const nextConfig = {
       destination: '/cortes-pollo',
       permanent: true,
     },
+    {
+      source: '/costillar',
+      destination: '/vacuno/40',
+      permanent: true,
+    },
+    {
+      source: '/asado-del-centro',
+      destination: '/vacuno/53',
+      permanent: true,
+    },
+    {
+      source: '/picaña',
+      destination: '/vacuno/17',
+      permanent: true,
+    },
    ]
   },
   images: {
