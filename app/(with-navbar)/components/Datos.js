@@ -32,7 +32,9 @@ const Datos = () => {
       <p className='text-[#4d4d4d]'>
       <strong className="font-bold">Lunes a Sabados</strong>
       <br/>
-      9:30-20:00
+      9:30-14:00
+      <br/>
+      15:00-20:00
       <br/>
       <strong className="font-bold">Domingos y Feriados</strong>
       <br/>
