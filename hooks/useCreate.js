@@ -29,8 +29,8 @@ export const useCreate = (initialData) => {
     .concat(`\n\nNota adicional: ${data.nota}`)
 
   const checkout = () => {
-    // const docRef = collection(db, 'orders')
-    // addDoc(docRef, { buyer: data, ...order, date: Date.now(), status: 'Procesando' })
+    const docRef = collection(db, 'orders')
+    addDoc(docRef, { buyer: data, ...order, date: Date.now(), status: 'Procesando' })
     router.push(`https://wa.me/5491126841364?text=${encodeURIComponent(text)}`)
     clear()
   }
