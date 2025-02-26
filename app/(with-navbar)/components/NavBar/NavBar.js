@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import logo from '@/assets/logo.png'
 import CartModal from '../../carrito/components/Cart/CartModal'
 import Search from '../ui/Search'
 import useHeaderState from '@/hooks/useHeaderState'
