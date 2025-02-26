@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import { Toaster } from '@/components/ui/toaster'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {
   title: 'Carniceria online a domicilio - Carne premium - El Origen',
@@ -13,6 +14,7 @@ const RootLayout = ({ children }) => {
         {children}
         <Toaster />
       </body>
+      <GoogleAnalytics gaId="G-5R8XZ9E4YR" />
     </html>
   )
 }
