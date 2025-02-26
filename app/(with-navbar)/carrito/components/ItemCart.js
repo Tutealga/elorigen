@@ -1,6 +1,5 @@
 import { useCartContext } from '@/context/CartContext'
 import { localePrice } from '@/utils/LocalePrice'
-import Image from 'next/image'
 
 const ItemCart = ({ product }) => {
   const { removeItem, restProduct, sumProduct } = useCartContext()
@@ -12,7 +11,7 @@ const ItemCart = ({ product }) => {
           <button className='flex h-[17px] w-[17px] items-center justify-center rounded-full bg-red-900' onClick={() => removeItem(product.id)}><i className='fa-solid fa-xmark mx-[1px] h-4 w-4 text-white' /></button>
         </div>
         <div className='relative h-16 w-16 cursor-pointer overflow-hidden rounded-full border border-neutral-700 bg-neutral-900 hover:bg-neutral-800'>
-          <Image
+          <img
             className='h-full w-full object-cover'
             width={64}
             height={64}

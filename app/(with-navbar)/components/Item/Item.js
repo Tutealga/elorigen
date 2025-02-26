@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { localePrice } from '@/utils/LocalePrice'
 import { useState } from 'react'
 import { useCartContext } from '@/context/CartContext'
@@ -32,7 +31,7 @@ const Item = ({ product }) => {
     <article className={`${product.discount !== '0%' ? 'border border-red-600' : ''} flex flex-col items-center gap-2 lg:w-full bg-white rounded-lg w-[250px] place-self-center`}>
       <Link className='flex-col flex items-center' href={`/${product.category}/${product.id}`}>
         <div className='flex items-center relative'>
-          <Image className='rounded-t-lg' src={product.img} height={162} width={243} alt={product.name} />
+          <img className='rounded-t-lg' src={product.img} height={162} width={243} alt={product.name} />
           <span className={`${product.discount !== '0%' ? 'absolute bg-red-600 top-0 left-0 p-1 text-xs text-white rounded-tl-lg' : 'hidden'}`}>{product.discount} OFF</span>
         </div>
         <h3 className='font-bold sm:text-lg md:text-xl text-center pt-4 text-base'>{product.name}</h3>
